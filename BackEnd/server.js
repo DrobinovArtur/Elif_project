@@ -48,39 +48,39 @@ app.put('/changeCompanies/:id',function(req,res){
     
 })
 
-//ChildCompanies
-
-
-app.post('/addCompanieChild',function (req,res) {
-    console.log(req.body);
-    db.addChildCompanie(req.body,function (data) {
-        res.send(data);
-    });
-
-    // res.send();
-})
-
-app.get('/companiesChild',function (req,res) {
-    db.getChildCompanies(function (data) {
-        res.send(data);
-    })
-});
-
-app.delete('/deleteChild/:id',function (req,res) {
-    var id=req.params.id;
-    db.deleteChildCompanie(id,function (x) {
-        res.send(x);
-    });
-
-});
-
-app.put('/changeChildCompanie/:id',function(req,res){
-    var id=req.params.id;
-       db.changeChildCompanie(req.body,id,function (data) {
-        res.send(data);
-    });
-    
-})
+// //ChildCompanies
+//
+//
+// app.post('/addCompanieChild',function (req,res) {
+//     console.log(req.body);
+//     db.addChildCompanie(req.body,function (data) {
+//         res.send(data);
+//     });
+//
+//     // res.send();
+// })
+//
+// app.get('/companiesChild',function (req,res) {
+//     db.getChildCompanies(function (data) {
+//         res.send(data);
+//     })
+// });
+//
+// app.delete('/deleteChild/:id',function (req,res) {
+//     var id=req.params.id;
+//     db.deleteChildCompanie(id,function (x) {
+//         res.send(x);
+//     });
+//
+// });
+//
+// app.put('/changeChildCompanie/:id',function(req,res){
+//     var id=req.params.id;
+//        db.changeChildCompanie(req.body,id,function (data) {
+//         res.send(data);
+//     });
+//
+// })
 
 
 

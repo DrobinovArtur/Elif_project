@@ -7,73 +7,45 @@
     <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">-->
 </head>
 <body ng-app="myApp" ng-controller="myCtrl as my">
-
 <header class="header">
 
     <!--<p>Add Main company</p>-->
     <input class="add__main-company" type="button" value="Add Main Company"
-           ng-click="my.addCompany=true; my.addButton=false">
+           ng-click="my.addCompanies=true; my.newCompany.parent_id=0; my.addCompanie=true; my.changeComp=false;">
     <!--<p>Add Child company</p>-->
     <input class="add__child-company" type="button" value="Add Child Company"
-           ng-click="my.addChildCompanies=true;my.changeButtonChild=false;my.addChildButton=true">
+           ng-click="my.addCompanies=true; my.mainChecker = true; my.addCompanie=true; my.changeComp=false;">
 </header>
-
 <main class="main">
-    <div class="main__box">
-        <div class="main__text-top"><p>Name Company . </p>
-            <p> Earnings</p></div>
-        <ul>
-            <li ng-repeat="company in my.companies" ng-if="my.childCompanies.length>=0">
-                <p>{{company.name_company}} | {{company.company_earnings}} $ <input type="button" value="Delete"
-                                                                                    ng-click="my.deleteCompany(company)"
-                                                                                    class="button__main-delete"><input
-                        type="button" value="Edit" ng-click="my.newCompany=company;my.addCompany=true;my.change=false"
-                        class="change__main-button"></p>
-                <ul>
-                    <li ng-repeat="child in my.childCompaniesArr(company.id)">
-                        {{child.name_child_company}} | {{child.child_earnings}} $ <input type="button" value="Delete"
-                                                                                         ng-click="my.deleteChildCompany(child)"
-                                                                                         class="button__main-delete">
-                        <input type="button" value="EDIT"
-                               ng-click="my.newChildCompany=child;my.addChildCompanies=true;my.addChildButton=false;my.changeButtonChild=true"
-                               class="change__main-button">
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <!--<input type="text" ng-model="my.changeCompany.name"> <span>name</span>-->
-        <!--<input type="text" ng-model="my.changeCompany.earnings"> <span>name</span>-->
+
+    <div ng-repeat="company in my.companies">
+        <span>{{company.company_name }} | {{ company.company_earning}}$</span><span ng-if="company.company_earnings">|{{company.company_earnings+company.company_earning}}$</span>
+        <input type="button" value="update" ng-click="my.addCompanies=true;my.newCompany=company;my.mainChecker = true;my.addCompanie=flase;my.changeComp=true;">
+        <input type="button" value="delete" ng-click="my.deleteCompanies(company.id)">
+        <div ng-include="'js/show-companies.html'"></div>
     </div>
+
+
+
 </main>
-<div class="modal__window" ng-show="my.addCompany==true">
+
+
+
+
+<div class="modal__window" ng-show="my.addCompanies==true">
     <p>Name Company</p>
-    <input type="text" class="modal__input" ng-model="my.newCompany.name_company">
+    <input type="text" class="modal__input" ng-model="my.newCompany.company_name">
     <p>Earnings Company</p>
-    <input type="text" class="modal__input" ng-model="my.newCompany.company_earnings">
-    <input type="button" ng-click="my.addMainCompany();my.addCompany=false;my.addButton=true" class="model__button-add" value="add"
-           ng-show="my.addButton==false">
-    <input type="button" class="change__modal-button" value="change" ng-click="my.changeCompanies();my.addCompany=false;my.change=true"
-           ng-show="my.change==false">
-    <input type="button" value="close" ng-click="my.addCompany=false"  class="modal__button-close">
+    <input type="text" class="modal__input" ng-model="my.newCompany.company_earning">
+    <div ng-if="my.mainChecker">
+        <select name="" id="select__modal" ng-model="my.newCompany.parent_id">
+            <option ng-repeat="company in my.allCompanies" value="{{company.id}}">{{company.company_name}}</option>
+        </select>
+    </div>
 
-</div>
-
-
-
-
-<div class="modal__window" ng-show="my.addChildCompanies==true">
-    <p>Name Company</p>
-    <input type="text" class="modal__input" ng-model="my.newChildCompany.name_child_company">
-    <p>Earnings Company</p>
-    <input type="text" class="modal__input" ng-model="my.newChildCompany.child_earnings">
-    <select name="" id="select__modal" ng-model="my.newChildCompany.id_company">
-        <option ng-repeat="company in my.companies" value="{{company.id}}">{{company.name_company}}</option>
-    </select>
-    <input type="button" ng-click="my.addChildCompany();my.addChildCompanies=false" class="model__button-add" value="add"
-           ng-show="my.addChildButton==true">
-    <input type="button" class="change__modal-button" value="change" ng-click="my.changeChildCompany();my.addChildCompanies=false;"
-           ng-show="my.changeButtonChild==true">
-    <input type="button" value="close" ng-click="my.addChildCompanies=false" class="modal__button-close" >
+    <input type="button" ng-click="my.addCompany(); my.addCompanies=false" class="model__button-add" value="add" ng-if="my.addCompanie">
+    <input type="button" ng-click="my.addCompanies=false" class="model__button-add" value="close">
+    <input type="button" ng-click="my.addCompanies=false ; my.updateCompanies()" class="model__button-add" value="change" ng-if="my.changeComp">
 </div>
 
 

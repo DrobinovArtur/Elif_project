@@ -1,0 +1,8 @@
+<div ng-if="company.children" style="margin: 5px 5px 5px 20px">
+    <div ng-repeat="company in company.children">
+        <span>{{company.company_name }} | {{ company.company_earning}}$</span><span ng-if="company.company_earnings">|{{company.company_earnings+company.company_earning}}$</span>
+        <input type="button" value="update" ng-click="my.addCompanies=true;my.newCompany=company;my.mainChecker = true;my.addCompanie=flase;my.changeComp=true;">
+        <input type="button" value="delete" ng-click="my.deleteCompanies(company.id)">
+        <div ng-include="'js/show-companies.html'"></div>
+    </div>
+</div>

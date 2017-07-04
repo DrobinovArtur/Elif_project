@@ -25,18 +25,18 @@ body{
     color: #700b13;
 }
 .main{
-    width: 1000px;
-    height: 600px;
-    background-image: url("../images/Macbook-PNG-Picture.png");
-    background-size: 100% 100%;
-    margin: auto;
-    position: relative;
+    /*width: 1000px;*/
+    /*height: 600px;*/
+    /*background-image: url("../images/Macbook-PNG-Picture.png");*/
+    /*background-size: 100% 100%;*/
+    /*margin: auto;*/
+    /*position: relative;*/
 }
 .main__box{
     width: 751px;
     height: 470px;
     background: white;
-    background-image: url("../images/6959843-cool-vintage-backgrounds.jpg");
+    /*background-image: url("../images/6959843-cool-vintage-backgrounds.jpg");*/
     background-size: cover;
     position: absolute;
     top:35px;
